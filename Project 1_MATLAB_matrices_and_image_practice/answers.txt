@@ -1,0 +1,6 @@
+2: time elapsed if approximately 0.0054 seconds, it ranges from 0.0025 to 0.0070
+3: time elapsed if approximately 0.0010 seconds, it ranges from 0.0009 to 0.0015
+12: dimensions: 750        1500           3
+14: 12
+15: darkest pixel: 5, [604,1290]
+
