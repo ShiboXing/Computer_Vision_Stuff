@@ -1,6 +1,6 @@
 %10
 function [val]=fib(n)
-    if(n==2)
+    if(n<=2)
         val=ones(1,n);
         return
     end
