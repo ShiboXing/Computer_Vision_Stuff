@@ -1,6 +1,5 @@
 function displaySeam (im,seam,seamDirection)
-    figure
-    imshow(im);
+   
     hold on
     if strcmp(seamDirection,"HORIZONTAL")
         plot(seam','vr');

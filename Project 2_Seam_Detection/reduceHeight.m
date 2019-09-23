@@ -24,7 +24,6 @@ function [reducedColorImage] = reduceHeight(im, display_flag)
     end
     
     reducedColorImage = uint8(reducedColorImage);
-    
     if(display_flag)
         figure;
         subplot(1, 3, 1); imagesc(energyImage);
