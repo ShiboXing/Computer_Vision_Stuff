@@ -59,8 +59,8 @@ function [x,y,scores,Ih,Iv]=extract_keypoints(image)
                      continue 
                   end
               
-               x=[x i];
-               y=[y j];
+               x=[x j];
+               y=[y i];
                scores=[scores R(i,j)];
            end
        end
@@ -95,7 +95,7 @@ function [x,y,scores,Ih,Iv]=extract_keypoints(image)
     
     for i=1:size(scores,2)
         if scores(i)>0
-            plot( y(i),x(i), 'bo', 'MarkerSize',scores(i) / (10^11));
+            plot( x(i),y(i), 'bo', 'MarkerSize',scores(i) / (10^11));
         end
     end
     

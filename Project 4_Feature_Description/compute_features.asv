@@ -25,14 +25,10 @@ function [features] = compute_features(x, y, scores, Ix, Iy)
         hist=zeros(1,8);
         for a=x(i)-n:x(i)+n
            for b=y(i)-n:y(i)+n
-               aa=a-x(i)+n;
-               bb=b-y(i)+n;
-               m(aa,bb)=(Ix(a,b)^2+Iy(a,b)^2)^0.5;
-               theta(aa,bb)=atand(Iy(a,b)/Ix(a,b));
+               m(a-x(i)+n,b-y(i)+n)=(Ix(a,b)^2+Iy(a,b)^2)^0.5;
+               theta(a-x(i)+n,b-y(i)+n)=(Iy(a,b)/Ix(a,b));     
            end
         end
-        theta
-        i=i+1;
         
     end
     
