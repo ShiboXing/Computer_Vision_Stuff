@@ -5,7 +5,7 @@ function [features] = compute_features(x, y, scores, Ix, Iy)
     i=1;
     rlen=size(Ix,1);
     clen=size(Ix,2);
-    
+    features=[];
     %I1 remove the keypoints that do not have n*n neighbors
     while i<=size(x,2)
        if x(i)<=n || x(i)>clen-n || y(i)<=n || y(i)>rlen-n
@@ -35,9 +35,7 @@ function [features] = compute_features(x, y, scores, Ix, Iy)
         hist=hist/sum(hist);
         hist=min(hist,0.2);
         hist=hist/sum(hist);
+        features=[features; hist];
         i=i+1;
     end
-    
-    
-    
 end
