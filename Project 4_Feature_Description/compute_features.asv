@@ -24,8 +24,8 @@ function [features] = compute_features(x, y, scores, Ix, Iy)
         for a=y(i)-n:y(i)+n
            for b=x(i)-n:x(i)+n
                %calculate magnitude and theta
-               m=(Iy(a,b)^2+Ix(a,b)^2)^0.5;
-               theta=atand(Ix(a,b)/Iy(a,b));
+               m=(Iy(a,b)^2+Iy(a,b)^2)^0.5;
+               theta=atand(Iy(a,b)/Ix(a,b));
                
                %populate the histogram
                index=min(int8((theta+90)/22.5)+1,8);%clip the result by 9, in case theta is 90 degree.

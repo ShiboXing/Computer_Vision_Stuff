@@ -1,6 +1,6 @@
 function [bow_repr] = computeBOWRepr(features, means)
    %II1
-   bow=zeros(1,size(means,1));
+   bow_repr=zeros(1,size(means,1));
    rlen=size(features,1);
    
    %II2
@@ -9,11 +9,12 @@ function [bow_repr] = computeBOWRepr(features, means)
    %II3
    [V,I]=min(distances,[],2);
    for i=1:size(I,1)
-      bow(I(i))= bow(I(i))+1;
+      bow_repr(I(i))= bow_repr(I(i))+1;
    end
    
    %II4
-   bow=bow/sum(bow);
+   bow_repr=bow_repr/sum(bow_repr);
+   
    
    
 end
