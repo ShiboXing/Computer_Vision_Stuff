@@ -2,12 +2,11 @@
 
 function [features] = compute_features(x, y, scores, Ix, Iy)
     n=5; %window size is 5
+    [rlen,clen]=size(Ix);
     i=1;
-    rlen=size(Ix,1);
-    clen=size(Ix,2);
-    features=[];
+    
     %I1 remove the keypoints that do not have n*n neighbors
-    while i<=size(x,2)
+    while i<=length(x)
        if x(i)<=n || x(i)>clen-n || y(i)<=n || y(i)>rlen-n
             x(i)=[];
             y(i)=[];
@@ -18,24 +17,36 @@ function [features] = compute_features(x, y, scores, Ix, Iy)
     end
     
     %I2 I3 I4 I5
-    i=1;
-    while i<=size(x,2)
+    features=double(zeros(length(x),8));
+    for i=1:length(x)
         hist=zeros(1,8);
         for a=y(i)-n:y(i)+n
            for b=x(i)-n:x(i)+n
                %calculate magnitude and theta
-               m=(Iy(a,b)^2+Ix(a,b)^2)^0.5;
-               theta=atand(Ix(a,b)/Iy(a,b));
+               m=sqrt(Ix(a,b)^2+Iy(a,b)^2);
+               theta=atand(Iy(a,b)/Ix(a,b));
                
-               %populate the histogram
-               index=min(int8((theta+90)/22.5)+1,8);%clip the result by 9, in case theta is 90 degree.
+               if isnan(theta)
+                  %add nothing if m==0
+                  if Iy(a,b)>0
+                     hist(8)=hist(8)+m;
+                  elseif Iy(a,b)<0
+                      hist(1)=hist(1)+m;
+                  end
+                  continue
+                end
+                
+               %calculate the index, quantize the orientations
+               index=min(uint8(floor((theta+90)/22.5))+1,8);%clip the result by 8, in case theta is 90 degree.
+               %populate the SIFT histogram
                hist(index)=hist(index)+m;
            end
         end
+        %normalize and clip the histogram
         hist=hist/sum(hist);
-        hist=min(hist,0.2);
+        hist(hist>0.2)=0.2;
         hist=hist/sum(hist);
-        features=[features; hist];
-        i=i+1;
+        features(i,:)=hist;
+        
     end
 end

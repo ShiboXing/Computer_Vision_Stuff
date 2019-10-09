@@ -22,7 +22,7 @@ for i = 1:length(im_list)
     im = imread(im_list{i});  
     im = imresize(im, [100 100]);
     
-    [x, y, scores, Ix, Iy] = extract_keypoints(im); % froml HW3
+    [x, y, scores, Ix, Iy] = extract_keypoints(im); % from HW3
     [features] = compute_features(x, y, scores, Ix, Iy); % you implement 
     repr1 = computeBOWRepr(features, means); % you implement   
     [repr2, repr3] = computeTextureReprs(im, F); % provided

@@ -1,0 +1,27 @@
+for Panda and Leopard, the avg_within_distance to avg_between_class_distance of bag-of-word features is 0.554344, 
+concat avg  0.221634 and mean avg 0.893918.
+BOW's ratio is than texture concat and greater than texture mean. I think this result is what I expected. 
+
+According to the formula, with the same across-image ratio, the higher our within-class average is, the higher the ratio, meaning our the images 
+within the same class are less differentiable. Thus, concatentaion should have the highest ratio. This algorithm 
+concatenates all filter response of the same image. If two figures of this animal are located at different positions
+in their corresponding image, the regions with high-level gradients will could be placed far apart in two concatenations.
+Thus, there is a good chance that the euclidean distance between two concatenations are high. Thus the ratio is high.
+
+On the other hand, average-mean algorithm can deal with the issue that animals could be positioned in different
+locations or angles. After calculating the means of gradients at different dimensions of the image, drastically 
+decreasing the number of columns in the final response. Similar mean values could come from gradients from features 
+at different positions. Also mean values of gradients from different classes of images could vary a lot with this
+algorithm. Take Panda and Leopard for example, Leopard's complex pattern would give a higher mean gradient value
+than the simplistic pattern on Panda. Thus the ratio is low.
+
+The bag-of-word algorithm makes histograms of different features in an image, before normalizing it. Thus, what 
+makes two histograms similar is how proportion of similar features across images. Unlike the concatenation,
+this algorithm would not have high euclidean distances of two features if they are far apart in the image. However,
+if one image copies another image's features, with a higher density, their feature histogram could look similar after
+being normalized. Thus, it is possible for BOW to have low average between-class distance. Thus the ratio is intermediate.
+
+The average mean algorithm should be the best descriptor. Since it keeps the distance within a class small and across classes
+high. It successfully grasps the feature pattern of the same class of images, thus it is the most useful for matching 
+similar images. 
+

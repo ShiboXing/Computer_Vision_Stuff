@@ -6,10 +6,10 @@ function [x,y,scores,Ih,Iv]=extract_keypoints(image)
     rows=size(image,1);
     cols=size(image,2);
     im1=double(rgb2gray(image));
-    f1=[-1 0 1;-2 0 2;-1 0 1];%sobel vertical 
-    f2=f1';%sobel horizontal
-    Iv=imfilter(im1,f1);
-    Ih=imfilter(im1,f2);
+    f1=[0 0 0;-1 0 1;0 0 0];%dx
+    f2=f1';%dy
+    Iv=imfilter(im1,f2);
+    Ih=imfilter(im1,f1);
    
     
     %part b
