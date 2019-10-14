@@ -1,8 +1,4 @@
- 
-quantizeRGB(imread('fish.jpg'),5);
-
-
-function [outputImg, meanColors, clusterIds] = quantizeRGB(origImg, k)
+ function [outputImg, meanColors, clusterIds] = quantizeRGB(origImg, k)
     %initializing
     [rlen,clen,~]=size(origImg);
     num_of_pixels=rlen*clen;
