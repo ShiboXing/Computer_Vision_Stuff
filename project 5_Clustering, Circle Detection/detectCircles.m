@@ -1,9 +1,9 @@
 function [centers] = detectCircles(im, edges, radius, top_k)
-    center=zeros(top_k,1);
+    %initialization
     [rlen,clen]=size(im);
-    quantization_value=5;
+    quantization_value=3;
     H=zeros(rlen,clen);
-    
+    %collect the houghspace votes
     for i =1 :length(edges)
        x=edges(i,1);
        y=edges(i,2);
@@ -19,28 +19,27 @@ function [centers] = detectCircles(im, edges, radius, top_k)
        H(tmpa,tmpb)=H(tmpa,tmpb)+1; 
     end
 
-    
+    %collect the top k votes
     topK_arr=zeros(1,top_k+1);
     for i=1:rlen*clen
         topK_arr(top_k+1)=H(i);
         topK_arr=sort(topK_arr,'descend');
     end
     topK_arr=unique(topK_arr(1:top_k));
-    pos=[];
+    centers=[];
     for i=1:length(topK_arr)
         [x,y]= find(H==topK_arr(i));
-        pos=[pos; [x y]];
+        centers=[centers; [x y]];
     end
-    pos=pos(1:top_k,:)
-    pos=pos*quantization_value;
+    centers=centers(1:top_k,:);
+    
+    %recover the top k circle centers
+    centers=centers*quantization_value;
     figure;
     imshow(im);
-    viscircles(pos, radius * ones(size(pos, 1), 1));
-   
-    
-    
-    max(max(H))
-    
-
+    fname=strcat('radius: ',int2str(radius),' top\_K: ',int2str(top_k));
+    viscircles(centers, radius * ones(size(centers, 1), 1));
+    title(fname);
+    saveas(gcf,'egg_circles.png');
 
 end

@@ -1,5 +1,4 @@
 
-img=imread('fish.jpg');
-quantizeRGB(img,2);
-
-detectCircles(img,detectEdges(img,2),7,10);
+img=imread('egg.jpg');
+quantizeRGB(img,5);
+detectCircles(img,detectEdges(img,2),7,4);
