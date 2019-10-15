@@ -1,5 +1,5 @@
- 
-%quantizeRGB(imread('fish.jpg'),5);
 
+img=imread('fish.jpg');
+quantizeRGB(img,2);
 
-detectEdges(imread('fish.jpg'),2);
+detectCircles(img,detectEdges(img,2),7,10);

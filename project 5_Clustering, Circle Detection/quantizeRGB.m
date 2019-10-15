@@ -15,7 +15,6 @@
     outputImg=uint8(reshape(outputImg,rlen,clen,3));
     figure 
     imshow(outputImg);
-    
-    
-    
+    fname=strcat(int2str(k),'.png');
+    saveas(gcf,fname);
 end
