@@ -19,18 +19,34 @@ H=estimate_homography(PA,PB);
 pt=[217; 181];  
 matched_pt=apply_homography(pt,H);
 
+%plot the matched correspondences 
 figure
 subplot(1,2,1);
 imshow(img1);
 hold on;
-plot(pt(1), pt(2), 'g*', 'LineWidth', 5, 'MarkerSize',1);
+plot(pt(1), pt(2), 'g*', 'LineWidth', 8, 'MarkerSize',1);
 subplot(1,2,2);
 imshow(img2);
 hold on;
-plot(matched_pt(1), matched_pt(2), 'y*', 'LineWidth', 5, 'MarkerSize', 1);
+plot(matched_pt(1), matched_pt(2), 'y*', 'LineWidth', 8, 'MarkerSize', 1);
 hold off
 saveas(gcf,'keble_onept.png');
 
+%stitching part, create canvas
+[rlen,clen,~]=size(img2);
+canvas=zeros(rlen*3, clen*3,3);
+for i=1:3
+    for r=1:rlen
+       for c=1:clen
+            
+       end
+    end
+end
+figure
+imshow(canvas);
+
+figure
+imshow(img2);
 
 
 
