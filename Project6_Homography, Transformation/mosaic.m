@@ -9,8 +9,8 @@ imshow(img2);
 impixelinfo;
 
 %extract 4 correspondences
-PA=[253 102;184 155;230 224;338 15];
-PB=[159 114;85 168;132 238;241 32];
+PA=[253 102;184 155;230 224;338 15;344 138;252 47];
+PB=[159 114;85 168;132 238;241 32;246 155;158 60];
 
 %compute the homography
 H=estimate_homography(PA,PB);
@@ -37,8 +37,6 @@ saveas(gcf,'keble_onept.png');
 [rlen,clen,~]=size(img2);
 canvas=uint8(zeros(rlen*3, clen*3,3));
 canvas(rlen:rlen*2-1,clen:clen*2-1,:)=img2;
-figure
-imshow(canvas);
 
 %stitching, apply homography
 for i=1:size(img1,1)
@@ -56,6 +54,7 @@ end
 %show stitching result
 figure
 imshow(canvas);
+saveas(gcf,'keble_mosaic.png');
 
 
 
