@@ -34,9 +34,17 @@ saveas(gcf,'keble_onept.png');
 
 %stitching part, create canvas
 [rlen,clen,~]=size(img2);
-canvas=uint8(zeros(rlen*3, clen*3,3));
+canvas=zeros(rlen*3, clen*3,3);
+rbound=rlen*3/2-rlen/2;
+cbound=clen*3/2-clen/2;
+for i=1:3
+    for r=1:rlen
+       for c=1:clen
+            canvas(rbound+r,cbound+c,i)=img2(r,c,3);
+       end
+    end
+end
 
-canvas(rlen*3/2-rlen/2:rlen*3/2+rlen/2-1,clen*3/2-clen/2:clen*3/2+clen/2-1,:)=img2;
 
 figure
 imshow(canvas);
