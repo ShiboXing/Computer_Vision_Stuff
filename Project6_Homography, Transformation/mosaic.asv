@@ -32,25 +32,30 @@ plot(matched_pt(1), matched_pt(2), 'y*', 'LineWidth', 8, 'MarkerSize', 1);
 hold off
 saveas(gcf,'keble_onept.png');
 
-%stitching part, create canvas
+
+%create canvas
 [rlen,clen,~]=size(img2);
-canvas=zeros(rlen*3, clen*3,3);
+canvas=uint8(zeros(rlen*3, clen*3,3));
 rbound=rlen*3/2-rlen/2;
 cbound=clen*3/2-clen/2;
-for i=1:3
-    for r=1:rlen
-       for c=1:clen
-            canvas(rbound+r,cbound+c,i)=img2(r,c,3);
-       end
-    end
-end
-
-
+canvas(rbound:rdboun+rlen-1,cbound:cbound+clen-1,:)=img2;
 figure
 imshow(canvas);
 
-figure
-imshow(img2);
+%stitching, apply homography
+for i=1:size(img1,1)
+   for j=1:size(img1,2)
+       p1=[i;j;1];
+       p2=apply_homography(p1,H);
+       
+   end
+end
+
+
+
+
+
+
 
 
 
