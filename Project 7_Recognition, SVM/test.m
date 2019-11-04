@@ -1,19 +1,32 @@
-
+%part 1 sketch
+%{
 sift=load('scenes_train\scenes_train\coast\image_0003.jpg.mat');
 means=load('means.mat');
 [P,A,B,C]=computeSPMRepr(sift,means.means);
+%}
 
-%fetch six sifts from train
+%build pyramids for all train
+%{
 root='scenes_train/scenes_train/';
 dirs={'coast','forest','highway','insidecity','mountain','opencountry','street','tallbuilding'};
 pyramids_train=build_pyramids(root,dirs,means,1);
 size(pyramids_train)
 save('pyramids_train.mat','pyramids_train');
+
+%build pyramids for all train
 root='scenes_test/scenes_test/';
 dirs={'coast','forest','highway','insidecity','mountain','opencountry','street','tallbuilding'};
 pyramids_test=build_pyramids(root,dirs,means,1);
 size(pyramids_test)
 save('pyramids_test.mat','pyramids_test');
+%}
+
+pyramids_train=load('pyramids_train');
+pyramids_test=load('pyramids_test');
+labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
+
+findLabelsKNN(pyramids_train.pyramids_train,labels,pyramids_test.pyramids_test);
+
 
 function [pyramids_train]=build_pyramids(root,dirs,means,num)
     %concatenate all the selected descriptors
