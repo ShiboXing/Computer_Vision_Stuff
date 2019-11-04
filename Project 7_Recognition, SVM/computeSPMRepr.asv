@@ -25,9 +25,6 @@
     level_1=[];
     for i=1:2
        for j=1:2 
-            if (size(spaces{i,j},1)==0)
-                    spaces{i,j}=zeros(1,128);
-            end
             level_1=[level_1;computeBOWRepr(double(spaces{i,j}),means)];
             %size(spaces{i,j})
        end
@@ -48,10 +45,13 @@
     level_2=[];
     for i=1:4
        for j=1:4
+            %{
             if (size(spaces{i,j},1)==0)
                 spaces{i,j}=zeros(1,128);
             end
-           
+            size(spaces{i,j})
+            size(means)
+            %}
             level_2=[level_2;computeBOWRepr(double(spaces{i,j}),means)];
        end
     end

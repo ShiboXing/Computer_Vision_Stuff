@@ -1,0 +1,25 @@
+
+sift=load('scenes_train\scenes_train\coast\image_0003.jpg.mat');
+means=load('means.mat');
+[P,A,B,C]=computeSPMRepr(sift,means.means);
+
+%fetch six sifts from train
+root='scenes_train/scenes_train/';
+dirs={'coast','forest','highway','insidecity','mountain','opencountry','street','tallbuilding'};
+
+%concatenate all the selected descriptors
+pyramids_train=cell(36,1);
+for i=1:length(dirs)
+    path=char(strcat(root,dirs(i)));
+    S=dir(fullfile(path,'*.mat'));
+    for k = 1:min(numel(S),6)
+        F = fullfile(path,S(k).name);
+        sift= load(F);
+        [P,~,~,~]=computeSPMRepr(sift,means.means);
+        pyramids_train{(i-1)*6+k,1}=P;
+    end
+end
+size(pyramids_train)
+
+
+
