@@ -7,7 +7,7 @@ data=[];
 for i=1:length(dirs)
     path=char(strcat(root,dirs(i)));
     S=dir(fullfile(path,'*.mat'));
-    for k = [11 44 56 78 99
+    for k = randi([1,100],1,12)
         F = fullfile(path,S(k).name);
         sift= load(F);
         data=[data;sift.d'];
@@ -42,7 +42,7 @@ save('pyramids_test.mat','pyramids_test');
     labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
     %pyramids
     predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
-    pyramids_ratio=compute_correct_ratio(predicted_labels);
+    pyramids_ratio=compute_(predicted_labels);
     pyramids_ratio
     %predicted_labels
    
@@ -58,8 +58,8 @@ function [ratio]=compute_correct_ratio(predicted_labels)
             incorrect=incorrect+1;
        end
     end
-    correct
-    incorrect
+    %correct
+    %incorrect
     ratio=double(correct)/double(correct+incorrect);
 end
     

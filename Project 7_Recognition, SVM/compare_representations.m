@@ -58,8 +58,8 @@ function [ratio]=compute_correct_ratio(predicted_labels)
             incorrect=incorrect+1;
        end
     end
-    correct
-    incorrect
+    %correct
+    %incorrect
     ratio=double(correct)/double(correct+incorrect);
 end
     
