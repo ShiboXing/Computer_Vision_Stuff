@@ -13,7 +13,7 @@ pyramids_train=build_pyramids(root,dirs,means);
 size(pyramids_train)
 save('pyramids_train.mat','pyramids_train');
 
-%build pyramids for all train
+%build pyramids for all test
 root='scenes_test/scenes_test/';
 dirs={'coast','forest','highway','insidecity','mountain','opencountry','street','tallbuilding'};
 pyramids_test=build_pyramids(root,dirs,means);
