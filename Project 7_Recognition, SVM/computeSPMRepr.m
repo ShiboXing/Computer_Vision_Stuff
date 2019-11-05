@@ -6,13 +6,12 @@
     size(f)
     size(d)
     %}
-    xseg=size(d,2)/2;
-    yseg=size(d,1)/2;
 %1a: level 0 representation
     level_0=computeBOWRepr(double(d'),means);
-    pyramid=cell(1,3);
     
 %1b: level 1 representation
+    xseg=size(d,2)/2;
+    yseg=size(d,1)/2;
     spaces=cell(2);
     for i=1:size(f,2)
         curr=f(:,i);
@@ -51,7 +50,7 @@
             if (size(spaces{i,j},1)==0)
                 spaces{i,j}=zeros(1,128);
             end
-           
+            
             level_2=[level_2 computeBOWRepr(double(spaces{i,j}),means)];
        end
     end
@@ -76,7 +75,7 @@
       bow_repr(I(i))= bow_repr(I(i))+1;
    end
    
-   
    %II4
    bow_repr=(bow_repr/sum(bow_repr))'; 
+   
 end

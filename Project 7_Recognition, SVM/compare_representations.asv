@@ -7,7 +7,7 @@ data=[];
 for i=1:length(dirs)
     path=char(strcat(root,dirs(i)));
     S=dir(fullfile(path,'*.mat'));
-    for k = 1:min(numel(S),10)
+    for k = [11 44 56 78 99
         F = fullfile(path,S(k).name);
         sift= load(F);
         data=[data;sift.d'];
@@ -38,21 +38,30 @@ size(pyramids_test)
 save('pyramids_test.mat','pyramids_test');
 
 
-
 %3.1.c -- compute accuracy for svm pyramids,level0-level2
     labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
     %pyramids
     predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
+    pyramids_ratio=compute_correct_ratio(predicted_labels);
+    pyramids_ratio
+    %predicted_labels
+   
+
+function [ratio]=compute_correct_ratio(predicted_labels) 
     correct=0;
     incorrect=0;
-    for i=1:size(labels,1)
-       if (labels(i)==floor(labels(i)/100)+1)
+     %calculate the fraction of correctly predicted labels
+    for i=1:400
+       if (predicted_labels(i)==floor(i/50)+1) %50 images in per test class
             correct=correct+1;
        else
             incorrect=incorrect+1;
        end
     end
+    correct
+    incorrect
     ratio=double(correct)/double(correct+incorrect);
+end
     
 
 function [pyramids,level0,level1,level2]=build_pyramids(root,dirs,means)

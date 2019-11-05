@@ -15,6 +15,9 @@ function [bow_repr] = computeBOWRepr(features, means)
    %II4
    bow_repr=(bow_repr/sum(bow_repr))'; 
    
+   'bow size'
+   size(bow_repr)
+   
    
    
 end
