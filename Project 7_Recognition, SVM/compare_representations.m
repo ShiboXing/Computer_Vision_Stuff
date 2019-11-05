@@ -20,7 +20,7 @@ end
 save('means.mat','means');
 %}
 means=load('means.mat');
-means=means.means;
+means=means.means; 
 
 %3b
    
