@@ -1,9 +1,0 @@
-function [predicted_labels_test] = findLabelsKNN(pyramids_train, labels_train, pyramids_test, k)
-   
-    trainp=cell2mat(pyramids_train);
-    testp=cell2mat(pyramids_test);
-    dists=pdist2(testp,trainp);
-    size(dists)
-    
-
-end
