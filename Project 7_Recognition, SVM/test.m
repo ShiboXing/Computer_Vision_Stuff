@@ -28,6 +28,8 @@ labels_knn=findLabelsKNN(pyramids_train.pyramids_train,labels,pyramids_test.pyra
 labels_svm=findLabelsSVM(pyramids_train.pyramids_train,labels,pyramids_test.pyramids_test);
 
 
+
+
 function [pyramids_train]=build_pyramids(root,dirs,means)
     %concatenate all the selected descriptors
     pyramids_train=cell(1);

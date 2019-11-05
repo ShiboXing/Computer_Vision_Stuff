@@ -42,12 +42,33 @@ save('pyramids_test.mat','pyramids_test');
     labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
     %pyramids
     predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
-    pyramids_ratio=compute_correct_ratio(predicted_labels);
+    pyramids_ratio=compute_accuracy(predicted_labels);
+    pyramids_ratio
+    
+    %{
+    labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
+    predicted_labels=findLabelsSVM(l0_test,labels,pyramids_test);
+    pyramids_ratio=compute_accuracy(predicted_labels);
+    pyramids_ratio
+    
+    predicted_labels=findLabelsSVM(l1_test,labels,pyramids_test);
+    pyramids_ratio=compute_accuracy(predicted_labels);
+    pyramids_ratio
+    
+    predicted_labels=findLabelsSVM(l2_test,labels,pyramids_test);
+    pyramids_ratio=compute_accuracy(predicted_labels);
     pyramids_ratio
     %predicted_labels
+    %}
+%{  
+sift=load('scenes_train\scenes_train\coast\image_0003.jpg.mat');
+means=load('means.mat');
+[P,A,B,C]=computeSPMRepr(sift,means.means);
+P
+%}
    
 
-function [ratio]=compute_correct_ratio(predicted_labels) 
+function [ratio]=compute_accuracy(predicted_labels) 
     correct=0;
     incorrect=0;
      %calculate the fraction of correctly predicted labels

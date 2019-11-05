@@ -10,8 +10,8 @@
     level_0=computeBOWRepr(double(d'),means);
     
 %1b: level 1 representation
-    xseg=size(d,2)/2;
-    yseg=size(d,1)/2;
+    xseg=227/2;
+    yseg=227/2;
     spaces=cell(2);
     for i=1:size(f,2)
         curr=f(:,i);
@@ -35,8 +35,8 @@
     
 %1c: level 2 representation
     spaces=cell(4);
-    xseg=size(d,2)/4;
-    yseg=size(d,1)/4;
+    xseg=227/4;
+    yseg=227/4;
     for i=1:size(f,2)
         curr=f(:,i);
         x=min(floor(round(curr(1))/xseg)+1,4);
