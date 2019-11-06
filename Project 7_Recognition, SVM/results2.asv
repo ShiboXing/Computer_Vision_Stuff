@@ -1,0 +1,23 @@
+The highest SVM accuracy is reached by SVM labeling on training data. 
+In fact, it should 1 since test error on the very training data that 
+svm model is trained with will be minimum.
+
+Using SVM labeling on the test data would give us some test errors, an accuracy of 
+about 0.5. Although using the pyramid, which is the most accurate SPM representation
+among the four kinds, our sampled training data might not be diverse
+enough to fit all the test data, thus creating some test errors.
+
+Using KNN (k=1) labeling on training data expectedly gives us a one for accuracy
+Since during labeling, we calculate pair-wise distance between the 
+training pyramid and itself. Since k=1, we are getting a SPM that 
+is the closest the image's BOW, which should be no other SPM than itself. As 
+K value goes up, we are allowing more BOWs which have greater distances to
+the image's SPM. Allow these less accurate SPMs to vote for a image's label
+could lead to some errors. In terms of the running labeling on training data, 
+the more SPMs we allow for voting, the more 'noise' we add to the result. We
+only need the closest SPM to be the most accurate.
+
+Finally KNN labeling on the test data gives us an accuracy lower than the accuracy
+of svm labeling on test data. This is also expected since svm calculates an optimal 
+classifier between any of two classes through training. KNN classifies label 
+

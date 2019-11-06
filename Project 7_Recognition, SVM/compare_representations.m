@@ -96,7 +96,6 @@ save('pyramids_test.mat','pyramids_test');
         line_cnt=line_cnt+1;
     end
     
-    
 %3.2.c
     figure 
     hold on
