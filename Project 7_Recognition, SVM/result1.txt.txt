@@ -1,0 +1,14 @@
+After running the compare_representations script with a training set of 12 random images from each class, a typical set
+of accuracy results for SVM labeling on pyramids, level0, level1 and level2 SPM representation are
+0.5500, 0.2850, 0.4475 and 0.5375 respectively.
+
+The accuracy for pyramids SVM labeling is expectedly the highest among the three, since it relies on BOWs constructed based on
+features of three different scales. 
+
+The labeling accuracy for level0 SPM training data is the lowest because its training data calculates the bow based on the sift
+of an entire image. We've known instances of drastically different photos can have similar sifts. 
+
+The labeling accuracy for level1 SPM has gotten much better since a 4-quadrant sift is more adequate for differentiating classes.
+
+The labeling accuracy for level2 SPM (1X800) is almost as good as SPM pyramids because it is constitutes the majority of SPM_pyramids. 
+It is the most critical part in the pyramids that help classify the classes.

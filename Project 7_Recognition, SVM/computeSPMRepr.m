@@ -10,8 +10,8 @@
     level_0=computeBOWRepr(double(d'),means);
     
 %1b: level 1 representation
-    xseg=227/2;
-    yseg=227/2;
+    xseg=256/2;
+    yseg=256/2;
     spaces=cell(2);
     for i=1:size(f,2)
         curr=f(:,i);
@@ -35,8 +35,8 @@
     
 %1c: level 2 representation
     spaces=cell(4);
-    xseg=227/4;
-    yseg=227/4;
+    xseg=256/4;
+    yseg=256/4;
     for i=1:size(f,2)
         curr=f(:,i);
         x=min(floor(round(curr(1))/xseg)+1,4);
@@ -77,5 +77,6 @@
    
    %II4
    bow_repr=(bow_repr/sum(bow_repr))'; 
+   
    
 end

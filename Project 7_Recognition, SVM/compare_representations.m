@@ -19,22 +19,19 @@ end
 [~,means]=kmeans(double(data),50,'MaxIter',2147483647);
 save('means.mat','means');
 
-means=load('means.mat');
-means=means.means;
+%means=load('means.mat'); 
+%means=means.means;
+
 
 %3.1.b
 
 %build pyramids,level0-level2 for all train
-root='scenes_train/scenes_train/';
-dirs={'coast','forest','highway','insidecity','mountain','opencountry','street','tallbuilding'};
 [pyramids_train,l0_train,l1_train,l2_train]=build_pyramids(root,dirs,means);
-size(pyramids_train)
 save('pyramids_train.mat','pyramids_train');
 
 %build pyramids,level0-level2 for all test
 root='scenes_test/scenes_test/';
 [pyramids_test,l0_test,l1_test,l2_test]=build_pyramids(root,dirs,means);
-size(pyramids_test)
 save('pyramids_test.mat','pyramids_test');
 
 
@@ -44,28 +41,20 @@ save('pyramids_test.mat','pyramids_test');
     predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
     pyramids_ratio=compute_accuracy(predicted_labels);
     pyramids_ratio
-    
-    %{
-    labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
-    predicted_labels=findLabelsSVM(l0_test,labels,pyramids_test);
+   
+    predicted_labels=findLabelsSVM(l0_train,labels,l0_test);
+    pyramids_ratio=compute_accuracy(predicted_labels);
+    pyramids_ratio
+      
+    predicted_labels=findLabelsSVM(l1_train,labels,l1_test);
     pyramids_ratio=compute_accuracy(predicted_labels);
     pyramids_ratio
     
-    predicted_labels=findLabelsSVM(l1_test,labels,pyramids_test);
+    predicted_labels=findLabelsSVM(l2_train,labels,l2_test);
     pyramids_ratio=compute_accuracy(predicted_labels);
     pyramids_ratio
     
-    predicted_labels=findLabelsSVM(l2_test,labels,pyramids_test);
-    pyramids_ratio=compute_accuracy(predicted_labels);
-    pyramids_ratio
-    %predicted_labels
-    %}
-%{  
-sift=load('scenes_train\scenes_train\coast\image_0003.jpg.mat');
-means=load('means.mat');
-[P,A,B,C]=computeSPMRepr(sift,means.means);
-P
-%}
+
    
 
 function [ratio]=compute_accuracy(predicted_labels) 
@@ -79,8 +68,6 @@ function [ratio]=compute_accuracy(predicted_labels)
             incorrect=incorrect+1;
        end
     end
-    %correct
-    %incorrect
     ratio=double(correct)/double(correct+incorrect);
 end
     
