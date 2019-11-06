@@ -7,7 +7,7 @@ function [predicted_labels_test] = findLabelsKNN(pyramids_train, labels_train, p
     testp=cell2mat(pyramids_test);
     dists=pdist2(testp,trainp);
     for i=1:size(dists,1)
-        [B,I]=mink(dists(i,:),k);
+        [~,I]=mink(dists(i,:),k);
         for j=1:size(I,2)
            I(j)=labels_train(I(j));
         end

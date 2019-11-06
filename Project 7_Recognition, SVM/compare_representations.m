@@ -39,30 +39,58 @@ save('pyramids_test.mat','pyramids_test');
     labels=reshape(repmat([1 2 3 4 5 6 7 8],100,1),[800,1]);
     %pyramids
     predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
-    pyramids_ratio=compute_accuracy(predicted_labels);
-    pyramids_ratio
+    pyramids_ratio=compute_accuracy(predicted_labels,size(predicted_labels,1));
+    %pyramids_ratio
    
     predicted_labels=findLabelsSVM(l0_train,labels,l0_test);
-    pyramids_ratio=compute_accuracy(predicted_labels);
-    pyramids_ratio
+    pyramids_ratio=compute_accuracy(predicted_labels,size(predicted_labels,1));
+    %pyramids_ratio
       
     predicted_labels=findLabelsSVM(l1_train,labels,l1_test);
-    pyramids_ratio=compute_accuracy(predicted_labels);
-    pyramids_ratio
+    pyramids_ratio=compute_accuracy(predicted_labels,size(predicted_labels,1));
+    %pyramids_ratio
     
     predicted_labels=findLabelsSVM(l2_train,labels,l2_test);
-    pyramids_ratio=compute_accuracy(predicted_labels);
-    pyramids_ratio
+    pyramids_ratio=compute_accuracy(predicted_labels,size(predicted_labels,1));
+    %pyramids_ratio
+    
+    
+%3.2.a b 
+    %test comparison
+    'svm --- test'
+    predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_test);
+    svm_accuracy=compute_accuracy(predicted_labels,size(predicted_labels,1))
+    'knn --- test'
+    for k =1:2:9
+        predicted_labels=findLabelsKNN(pyramids_train,labels,pyramids_test,k);
+        pyramids_accuracy=compute_accuracy(predicted_labels,size(predicted_labels,1))
+    end
+    
+    %train comparison
+    'svm --- train'
+    predicted_labels=findLabelsSVM(pyramids_train,labels,pyramids_train);
+    svm_accuracy=compute_accuracy(predicted_labels,size(predicted_labels,1))
+    'knn --- train'
+    for k =1:2:9
+        predicted_labels=findLabelsKNN(pyramids_train,labels,pyramids_train,k);
+        pyramids_accuracy=compute_accuracy(predicted_labels,size(predicted_labels,1))
+    end
+    
+    
+    
+    
+    
     
 
    
 
-function [ratio]=compute_accuracy(predicted_labels) 
+function [ratio]=compute_accuracy(predicted_labels,NumOfLabels) 
     correct=0;
     incorrect=0;
+    
      %calculate the fraction of correctly predicted labels
-    for i=1:400
-       if (predicted_labels(i)==floor(i/50)+1) %50 images in per test class
+    for i=1:NumOfLabels
+       if (predicted_labels(i)==floor(i/(NumOfLabels/8)+1)) %50 images in per test class
             correct=correct+1;
        else
             incorrect=incorrect+1;
