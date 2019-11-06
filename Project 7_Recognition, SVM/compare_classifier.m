@@ -46,7 +46,7 @@
     hold on
     x=linspace(1,9,5);
     plot(x,line_segments,'linewidth',2);
-    title('comparison of svm an knn labeling with SPM pyramid');
+    title('comparison of svm and knn labeling with SPM pyramid');
     ylabel('accuracy');
     xlabel('k values');
     legend('svm test accuracy','knn test accuracy','svm train accuracy','knn train accuracy');
