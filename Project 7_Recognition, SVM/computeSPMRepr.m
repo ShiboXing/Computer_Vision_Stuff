@@ -1,11 +1,6 @@
  function [pyramid, level_0, level_1, level_2] = computeSPMRepr(sift, means)
     f=sift.f;
     d=sift.d;
-    %{
-    size(means)
-    size(f)
-    size(d)
-    %}
 %1a: level 0 representation
     level_0=computeBOWRepr(double(d'),means);
     
