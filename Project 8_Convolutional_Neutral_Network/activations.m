@@ -8,11 +8,31 @@ Z=weights1*X;
     %apply the tanh activation
 Z=tanh(Z);
 %I3:
-Y=weights2*Z;
-    %apply the Sigmoid activation
-Y=max(Y,0);
+Y=weights2*Z
+    %apply the Sigmoid activation on output layer
+Y=sigmoid(Y)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Y=sigmoid(arr)
+    Y=zeros(length(arr),1);
+    for i =1:length(arr)
+       Y(i)=1/(1+exp(-arr(i)));
+    end
+
+end
 
 
 
