@@ -8,9 +8,26 @@ Z=weights1*X;
     %apply the tanh activation
 Z=tanh(Z);
 %I3:
-Y=weights2*Z
-    %apply the Sigmoid activation on output layer\
-Y=sigmoid(Y)
+Y=weights2*Z;
+    %apply the Sigmoid activation on output layer
+Y=sigmoid(Y);
+
+%II1:
+load('weights_samples.mat');
+s1=W1*x1;
+s2=W2*x2;
+s3=W3*x3;
+s4=W4*x4
+
+
+
+
+
+
+
+
+
+
 
 function Y=sigmoid(arr)
     Y=zeros(length(arr),1);

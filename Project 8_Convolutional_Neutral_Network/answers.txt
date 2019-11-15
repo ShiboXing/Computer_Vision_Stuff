@@ -1,0 +1,1 @@
+according to the hinge_loss, the first weight matrix W1 is the best one.

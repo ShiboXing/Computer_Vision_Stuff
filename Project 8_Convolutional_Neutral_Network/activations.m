@@ -8,11 +8,9 @@ Z=weights1*X;
     %apply the tanh activation
 Z=tanh(Z);
 %I3:
-Y=weights2*Z
+Y=weights2*Z;
     %apply the Sigmoid activation on output layer
-Y=sigmoid(Y)
-
-
+Y=sigmoid(Y);
 
 
 
