@@ -1,15 +1,20 @@
-%II1:
 load('weights_samples.mat');
 weights={W1 W2 W3};
 inputs={x1 x2 x3 x4};
 
-%II2
-for i =1:length(weights)
-    strcat('hinge loss for matrix ',int2str(i))
-    L_h=compute_loss(weights{i},inputs,'hinge')
-    strcat('cross-entropy loss for matrix ',int2str(i))
-    L_e=compute_loss(weights{i},inputs,'entropy')
+%III1:
+h=0.0001;
+loss=compute_loss(W1,inputs,'hinge');
+W1=W1(:);
+gradient_dW=zeros(size(W1,1),1);
+for i=1:size(W1,1)
+   W1_plus_h=W1;
+   W1_plus_h(i)=W1_plus_h(i)+h;
+   W1_plus_h=reshape(W1_plus_h,[4,25]);
+   loss=compute_loss(W1_plus_h,inputs,'hinge');
+   gradient_dW=
 end
+
 
 function loss = compute_loss(weight,inputs,loss_type)
     L=0;

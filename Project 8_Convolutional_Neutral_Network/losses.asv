@@ -1,0 +1,25 @@
+%II1:
+load('weights_samples.mat');
+weights={W1 W2 W3};
+inputs={x1 x2 x3 x4};
+
+%II2
+for i =1:length(weights)
+    L_h=0;%hinge loss
+    L_e=0;%cross entropy loss
+    
+    strcat('hinge loss for matrix ',int2str(i))
+    L_h=compute(weight{i},input{j},'hinge');
+    strcat('cross-entropy loss for matrix ',int2str(i))
+    L_e=L_e/length(inputs)
+end
+
+function loss = compute_loss(weight,inputs,loss_type)
+    
+    for j=1:length(inputs)
+        scores=weights{i}*inputs{j};
+        L_h=L_h+hinge_loss(scores,j);
+        L_e=L_e+cross_entropy_loss(scores,j);
+    end
+
+end
