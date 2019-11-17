@@ -3,17 +3,24 @@ weights={W1 W2 W3};
 inputs={x1 x2 x3 x4};
 
 %III1:
-h=0.0001;
-loss=compute_loss(W1,inputs,'hinge');
-W1=W1(:);
-gradient_dW=zeros(size(W1,1),1);
-for i=1:size(W1,1)
-   W1_plus_h=W1;
-   W1_plus_h(i)=W1_plus_h(i)+h;
-   W1_plus_h=reshape(W1_plus_h,[4,25]);
-   loss=compute_loss(W1_plus_h,inputs,'hinge');
-   gradient_dW=
+gradients=compute_gradients(W1,inputs,0.0001)
+weight=weight-h*reshape(gradients,[4,20])
+gradients=compute_gradients(W1,inputs,0.001);
+
+function gradients=compute_gradients(weight,inputs,h)
+    loss=compute_loss(weight,inputs,'hinge');
+    weight=weight(:);
+    gradients=zeros(size(weight,1),1);
+    for i=1:size(weight,1)
+       weight_plus_h=weight;
+       weight_plus_h(i)=weight_plus_h(i)+h;
+       weight_plus_h=reshape(weight_plus_h,[4,25]);
+       dh_loss=compute_loss(weight_plus_h,inputs,'hinge');
+       gradients(i)=(dh_loss-loss)/h;
+    end
 end
+
+
 
 
 function loss = compute_loss(weight,inputs,loss_type)
