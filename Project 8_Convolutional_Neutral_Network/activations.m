@@ -13,17 +13,6 @@ Y=weights2*Z;
 Y=sigmoid(Y);
 
 
-
-
-
-
-
-
-
-
-
-
-
 function Y=sigmoid(arr)
     Y=zeros(length(arr),1);
     for i =1:length(arr)
