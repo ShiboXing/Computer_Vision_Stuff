@@ -1,7 +1,0 @@
-function [Output] = my_pool(Input, Pool_Size)
-   for i=1:Pool_Size:size(input,1)
-      for j=1:Pool_Size:size(input,1) 
-         Input(i:i+Pool-Size-1,j: 
-      end
-   end
-end
