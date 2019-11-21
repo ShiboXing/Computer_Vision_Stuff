@@ -18,7 +18,7 @@ Filter = [ 	0 -1 -1;
 			
 % first test
 
-output1a = my_conv(Image, Filter, 0, 2);
+output1a = my_conv(Image, Filter, 0, 2)
 output1b = max(0, output1a); 				% RELU
 output1 = my_pool(output1b, 2);
 
