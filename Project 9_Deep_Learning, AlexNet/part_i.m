@@ -22,12 +22,15 @@ layers =[%input layer
 %I3
 options = trainingOptions('sgdm', ...
     'MaxEpochs',1,...
-    'InitialLearnRate',1e-3, ...
+    'InitialLearnRate',1e-4, ...
     'Verbose',false, ...
     'Plots','training-progress');
 
 net = trainNetwork(imdsTrain,layers,options);
+save('cnn.mat');
 
+YPred = classify(net,imdsTest);
+YTest = imdsTest.Labels;
     
     
 
