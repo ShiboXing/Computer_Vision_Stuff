@@ -1,0 +1,18 @@
+%I1
+f=fullfile('scenes_all','scenes_all');
+imds=imageDatastore(f,'IncludeSubfolders',true,'LabelSource','foldernames')
+NumOfImgs=100;
+[Train,Test] = splitEachLabel(imds,NumOfImgs,'randomize');
+
+%I2
+layers = [
+    %input layer
+    imageInputLayer([227 227 3])
+    %Group A layer
+    convolution2dLayer(11,50);
+    relulayers
+    
+    maxPooling2dLayer(2,'Stride',2)
+
+
+
