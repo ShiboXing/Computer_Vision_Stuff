@@ -1,3 +1,6 @@
 performance records:
 
-part_i:  
+part_i: 0.1250
+part_ii: 0.6550
+part_iii: 0.7500
+part_iv: part_iii-> 0.2900 (0.0001), 0.2275 (0.01)
