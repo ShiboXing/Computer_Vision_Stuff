@@ -4,9 +4,11 @@ inputs={x1 x2 x3 x4};
 
 %III1:
 gradients=compute_gradients(W1,inputs,0.0001);
-updated_W1_1=W1-h*reshape(gradients,[4,25]);
+updated_W1_1=W1-0.001*reshape(gradients,[4,25]);
+%{
 gradients=compute_gradients(W1,inputs,0.001);
 updated_W1_2=W1-h*reshape(gradients,[4,25]);
+%}
 
 
 function gradients=compute_gradients(weight,inputs,h)

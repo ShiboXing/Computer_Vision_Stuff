@@ -4,5 +4,5 @@ function [predicted_labels_test] = findLabelsSVM(pyramids_train, labels_train, p
     %build a model using training BOW
     model=fitcecoc(trainp,labels_train);
     predicted_labels_test=predict(model, testp);
-    
+
 end
