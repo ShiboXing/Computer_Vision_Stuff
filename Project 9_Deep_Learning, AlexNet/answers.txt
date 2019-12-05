@@ -1,6 +1,32 @@
 performance records:
-
 part_i: 0.1250
 part_ii: 0.6550
 part_iii: 0.7500
 part_iv: part_iii-> 0.2900 (0.0001), 0.2275 (0.01)
+
+part_i performance is 0.125, which is very low. This is expected because in part_i's 
+network there is only one fully-connected layer after feature extraction and its feature
+extraction process doesn't consist of sufficient layers.
+Since the fully-connected layers are where training takes place, with a single fully-connected 
+layer we cannot perform too many back propagation, meaning not much error fixing. 
+Thus, even if we increase the number of iterations in part_i, accuracy won't improve
+significantly. 
+
+Since part_i's model is insufficient for training, it couldn't perform better than the
+svm classfication. However, SVM will be beaten by any properly constructed ConvNet. 
+SVM's model of classfication in our dataset is made up by multiple binary SVMs.
+However, it's complexity cannot be increased to fit a complex dataset.
+On the other hand, a ConvNet's complexity can be increase by adding more fully-connected weight matrices.
+ 
+Part_ii utilizes a portion of pretrained AlexNet which can accurately extract features from numerous
+classes of images. Thus even with a single fully-connected layer we can get a much better
+result than part_i.
+
+Part_iii has an enhancement on top of part_ii by not shortening AlexNet by 3 FC layers, 
+meaning that we have more FC layers, and more back propagations as a result.
+
+In Part_iv where we redo part_iii, we get a lower accuracy because of the changes in learning rate.
+0.0001 as a learning rate might need more iterations than one epoch can provide to train a model
+complex enough for classifying our dataset.
+On the other hand, 0.01 might be too high to have a stable training. 
+
